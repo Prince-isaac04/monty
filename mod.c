@@ -1,45 +1,41 @@
 #include "monty.h"
-bus_t bus = {NULL, NULL, NULL, 0};
 /**
- * main - monty code interpreter
- * @argc: number of arguments
- * @argv: monty file location
- * Return: 0 on success
- */
-int main(int argc, char *argv[])
+ * func_mod - computes the rest of the division of the second
+ * top element of the stack by the top element of the stack
+ * @headers: stack head
+ * @counts: line_number
+ * Return: no return
+*/
+void func_mod(stack_t **headers, unsigned int counts)
 {
-	char *content;
-	FILE *file;
-	size_t size = 0;
-	ssize_t read_line = 1;
-	stack_t *stack = NULL;
-	unsigned int counter = 0;
+	stack_t *m;
+	int lent = 0, top;
 
-	if (argc != 2)
+	m = *head;
+	while (m)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
+		m = m->next;
+		lent++;
+	}
+	if (lent < 2)
+	{
+		fprintf(stderr, "L%d: can't mod, stack too short\n", counts);
+		fclose(bus.fd);
+		free(bus.buff);
+		free_stack(*headers);
 		exit(EXIT_FAILURE);
 	}
-	file = fopen(argv[1], "r");
-	bus.file = file;
-	if (!file)
+	m = *headers;
+	if (m->n == 0)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "L%d: division by zero\n", counts);
+		fclose(bus.fd);
+		free(bus.buff);
+		free_stack(*headers);
 		exit(EXIT_FAILURE);
 	}
-	while (read_line > 0)
-	{
-		content = NULL;
-		read_line = getline(&content, &size, file);
-		bus.content = content;
-		counter++;
-		if (read_line > 0)
-		{
-			execute(content, &stack, counter, file);
-		}
-		free(content);
-	}
-	free_stack(stack);
-	fclose(file);
-	return (0);
+	top = m->next->n % m->n;
+	m->next->n = top;
+	*headers = m->next;
+	free(m);
 }
