@@ -12,7 +12,7 @@ int main(int arg_counts, char *arg_v[])
 	stack_t *stacks = NULL;
 	char *content;
 	FILE *file;
-	size_t size = 0;
+	size_t sizes = 0;
 	ssize_t read_line = 1;
 
 	if (arg_counts != 2)
@@ -30,7 +30,7 @@ int main(int arg_counts, char *arg_v[])
 	while (read_line > 0)
 	{
 		content = NULL;
-		read_line = getline(&content, &size, file);
+		read_line = getline(&content, &sizes, file);
 		bus.content = content;
 		counts++;
 		if (read_line > 0)
