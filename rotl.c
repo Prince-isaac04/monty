@@ -1,11 +1,11 @@
 #include "monty.h"
 /**
- *f_rotl- rotates the stack to the top
+ *func_rotl- rotates the stack to the top
  *@head: stack head
- *@counter: line_number
+ *@counts: line_number
  *Return: no return
  */
-void f_rotl(stack_t **head,  __attribute__((unused)) unsigned int counter)
+void func_rotl(stack_t **head,  __attribute__((unused)) unsigned int counts)
 {
 	stack_t *tmp = *head, *aux;
 

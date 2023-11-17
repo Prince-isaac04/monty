@@ -81,5 +81,25 @@ void addnodes(stack_t **headers, int v);
 void addqueue(stack_t **head, int n);
 void f_queue(stack_t **head, unsigned int counter);
 void f_stack(stack_t **head, unsigned int counter);
+void f_pall(stack_t **head, unsigned int number);
+void func_pint(stack_t **head, unsigned int number);
+int implement(char *buff, stack_t **stacks, unsigned int counts, FILE *fd);
+void free_stack(stack_t *head);
+void func_pop(stack_t **head, unsigned int counts);
+void func_swap(stack_t **head, unsigned int counts);
+void f_add(stack_t **head, unsigned int counter);
+void f_nop(stack_t **head, unsigned int counter);
+void func_sub(stack_t **head, unsigned int counts);
+void f_div(stack_t **head, unsigned int counter);
+void f_mul(stack_t **head, unsigned int counter);
+void f_mod(stack_t **head, unsigned int counter);
+void func_pchar(stack_t **head, unsigned int counts);
+void func_pstr(stack_t **head, unsigned int counts);
+void func_rotl(stack_t **head, unsigned int counts);
+void func_rotr(stack_t **head, __attribute__((unused)) unsigned int counts);
+void addnode(stack_t **head, int n);
+void queue_add(stack_t **head, int n);
+void func_queue(stack_t **head, unsigned int counts);
+void func_stack(stack_t **head, unsigned int counts);
 
 #endif
