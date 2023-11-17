@@ -10,36 +10,36 @@ int main(int arg_counts, char *arg_v[])
 {
 	unsigned int counts = 0;
 	stack_t *stacks = NULL;
-	char *buff;
-	FILE *fd;
-	ssize_t scan_line = 1;
-	size_t sizes = 0;
+	char *content;
+	FILE *file;
+	size_t size = 0;
+	ssize_t read_line = 1;
 
 	if (arg_counts != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	fd = fopen(arg_v[1], "r");
-	bus.fd = fd;
-	if (!fd)
+	file = fopen(arg_v[1], "r");
+	bus.file = file;
+	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", arg_v[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (scan_line > 0)
+	while (read_line > 0)
 	{
-		buff = NULL;
-		scan_line = getline(&buff, &sizes, fd);
-		bus.buff = buff;
+		content = NULL;
+		read_line = getline(&content, &size, file);
+		bus.content = content;
 		counts++;
-		if (scan_line > 0)
+		if (read_line > 0)
 		{
-			execute(buff, &stacks, counts, fd);
+			implement(content, &stacks, counts, file);
 		}
-		free(buff);
+		free(content);
 	}
-	free_stack(stacks);
-	fclose(fd);
+	remove_stack(stacks);
+	fclose(file);
 	return (0);
 }

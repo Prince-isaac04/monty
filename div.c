@@ -16,12 +16,12 @@ void func_div(stack_t **headers, unsigned int counts)
 		m = m->next;
 		lent++;
 	}
-	if (letn < 2)
+	if (lent < 2)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", counts);
 		fclose(bus.file);
 		free(bus.content);
-		free_stack(*headers);
+		remove_stack(*headers);
 		exit(EXIT_FAILURE);
 	}
 	m = *headers;
@@ -30,7 +30,7 @@ void func_div(stack_t **headers, unsigned int counts)
 		fprintf(stderr, "L%d: division by zero\n", counts);
 		fclose(bus.file);
 		free(bus.content);
-		free_stack(*headers);
+		remove_stack(*headers);
 		exit(EXIT_FAILURE);
 	}
 	top = m->next->n / m->n;

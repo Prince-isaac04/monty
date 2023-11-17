@@ -14,7 +14,7 @@ void func_pop(stack_t **head, unsigned int counts)
 		fprintf(stderr, "L%d: can't pop an empty stack\n", counts);
 		fclose(bus.file);
 		free(bus.content);
-		free_stack(*head);
+		remove_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	h = *head;

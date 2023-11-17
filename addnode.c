@@ -17,7 +17,7 @@ void addnodes(stack_t **headers, int v)
 		exit(0); }
 	if (top)
 		top->prev = new_nod;
-	new_nod->v = v;
+	new_nod->n = v;
 	new_nod->next = *headers;
 	new_nod->prev = NULL;
 	*headers = new_nod;

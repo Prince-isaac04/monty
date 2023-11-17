@@ -11,7 +11,7 @@ void func_mod(stack_t **headers, unsigned int counts)
 	stack_t *m;
 	int lent = 0, top;
 
-	m = *head;
+	m = *headers;
 	while (m)
 	{
 		m = m->next;
@@ -20,18 +20,18 @@ void func_mod(stack_t **headers, unsigned int counts)
 	if (lent < 2)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", counts);
-		fclose(bus.fd);
-		free(bus.buff);
-		free_stack(*headers);
+		fclose(bus.file);
+		free(bus.content);
+		remove_stack(*headers);
 		exit(EXIT_FAILURE);
 	}
 	m = *headers;
 	if (m->n == 0)
 	{
 		fprintf(stderr, "L%d: division by zero\n", counts);
-		fclose(bus.fd);
-		free(bus.buff);
-		free_stack(*headers);
+		fclose(bus.file);
+		free(bus.content);
+		remove_stack(*headers);
 		exit(EXIT_FAILURE);
 	}
 	top = m->next->n % m->n;
